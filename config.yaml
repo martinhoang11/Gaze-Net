@@ -8,12 +8,12 @@ train:
     decay_step: 5000
     loss: MSELoss
   save:
-    save_path: "/home/cyh/GazeBenchmark/exp/Implementation/Gaze-Net"
+    save_path: "./models"
     model_name: GazeNet
     step: 10
   data:
-    image: "/home/cyh/GazeDataset20200519/EyeBased/MPIIGaze/Image"
-    label: "/home/cyh/GazeDataset20200519/EyeBased/MPIIGaze/Label"
+      image: "./MPIIGaze/Data/Original"
+      label: "./MPIIGaze/Label"
   pretrains: "None"
 test:
    load:
@@ -23,5 +23,5 @@ test:
       load_path: "/home/cyh/GazeBenchmark/exp/Implementation/Gaze-Net"
       model_name: GazeNet
    data:
-      image: "/home/cyh/GazeDataset20200519/EyeBased/MPIIGaze/Image"
-      label: "/home/cyh/GazeDataset20200519/EyeBased/MPIIGaze/Label"
+      image: "./MPIIGaze/Data/Normalized"
+      label: "./MPIIGaze/Label"

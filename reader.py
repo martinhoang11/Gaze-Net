@@ -24,6 +24,7 @@ class loader(Dataset):
         if header: self.lines.pop(0)
 
     self.root = root
+    self.path = path
 
   def __len__(self):
     return len(self.lines)
@@ -31,12 +32,10 @@ class loader(Dataset):
   def __getitem__(self, idx):
     line = self.lines[idx]
     line = line.strip().split(" ")
-
     name = line[1]
     gaze2d = line[5]
     head2d = line[6]
     eye = line[0]
-
     label = np.array(gaze2d.split(",")).astype("float")
     label = torch.from_numpy(label).type(torch.FloatTensor)
 
@@ -60,9 +59,9 @@ def txtload(labelpath, imagepath, batch_size, shuffle=True, num_workers=0, heade
   return load
 
 
-if __name__ == "__main__":
-  path = './p00.label'
-  d = loader(path)
-  print(len(d))
-  (data, label) = d.__getitem__(0)
+# if __name__ == "__main__":
+#   path = './p00.label'
+#   d = loader(path)
+#   print(len(d))
+#   (data, label) = d.__getitem__(0)
 

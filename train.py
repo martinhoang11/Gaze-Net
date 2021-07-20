@@ -32,7 +32,7 @@ if __name__ == "__main__":
     print(f"Train Set:{trains}")
     print(f"Test Set:{tests}")
 
-    trainlabelpath = [os.path.join(labelpath, j) for j in trains] 
+    trainlabelpath = [os.path.join(labelpath, j) for j in trains]
 
     savepath = os.path.join(config["save"]["save_path"], f"checkpoint/{tests}")
     if not os.path.exists(savepath):
@@ -41,6 +41,7 @@ if __name__ == "__main__":
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     
     print("Read data")
+    # imagepath = 
     dataset = reader.txtload(trainlabelpath, imagepath, config["params"]["batch_size"], shuffle=True, num_workers=6, header=True)
 
     print("Model building")
@@ -59,7 +60,7 @@ if __name__ == "__main__":
     optimizer = optim.Adam(net.parameters(),lr=base_lr, betas=(0.9,0.95))
     scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=decaysteps, gamma=decayratio)
 
-    print("Traning")
+    print("Training")
     length = len(dataset)
     total = length * config["params"]["epoch"]
     cur = 0
