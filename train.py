@@ -61,6 +61,8 @@ if __name__ == "__main__":
     scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=decaysteps, gamma=decayratio)
 
     print("Training")
+    if hasattr(torch.cuda, 'empty_cache'):
+        torch.cuda.empty_cache()
     length = len(dataset)
     total = length * config["params"]["epoch"]
     cur = 0
